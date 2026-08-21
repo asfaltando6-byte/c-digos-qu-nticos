@@ -1,5 +1,8 @@
-const CHECKOUT_URL = "#oferta";
+import Image from "next/image";
+
+const CHECKOUT_URL = "https://pay.cakto.com.br/3cs7xgu_1055130";
 const OFFER_PRICE = "R$ 17,00";
+const BONUS_ANCHOR = "#bonus";
 
 const insidePages = [
   ["/sample-love-table-v1.webp", "Página do guia com a sequência 888 412 1289018 para a intenção Amor", "888 412 1289018 • Amor"],
@@ -28,8 +31,8 @@ const bonuses = [
   ["03", "Ritual de 7 dias", "Um roteiro diário para sair dos números soltos e criar uma prática organizada.", "/bonus-ritual-v1.webp", "Mockup do Ritual de 7 Dias com páginas e roteiro numerado"],
 ];
 
-function CTA({ label = "QUERO ACESSAR OS 400 CÓDIGOS" }: { label?: string }) {
-  return <a className="cta" href={CHECKOUT_URL}><span>{label}</span><small>Pagamento único de {OFFER_PRICE}</small></a>;
+function CTA({ label = "QUERO ACESSAR OS 400 CÓDIGOS", href = BONUS_ANCHOR }: { label?: string; href?: string }) {
+  return <a className="cta" href={href}><span>{label}</span><small>Pagamento único de {OFFER_PRICE}</small></a>;
 }
 
 export default function Home() {
@@ -39,12 +42,12 @@ export default function Home() {
       <div className="container hero-grid">
         <div className="hero-copy">
           <div className="eyebrow">✦ Para quem salvou códigos, mas ainda não sabe qual usar</div>
-          <h1>Pare de usar códigos soltos <em>sem saber se escolheu a sequência certa</em></h1>
+          <h1>Encontre em segundos o Código Grabovoi certo para sua intenção <em>sem misturar sequências de prints espalhados</em></h1>
           <p className="hero-sub">Tenha 400 códigos de manifestação organizados por intenção, com significado simbólico e orientação de uso — para não misturar sequências nem depender de prints espalhados.</p>
         </div>
         <div className="hero-visual">
           <div className="orbit one"/><div className="orbit two"/>
-          <img src="/deliverable-mockup-v4.webp" width="1200" height="800" fetchPriority="high" decoding="async" alt="Entregável completo com guia, páginas digitais, áudios, planner e ritual de 7 dias" />
+          <Image src="/deliverable-mockup-v4.webp" width={1200} height={800} priority sizes="(max-width: 560px) 112vw, 720px" alt="Entregável completo com guia, páginas digitais, áudios, planner e ritual de 7 dias" />
           <div className="floating-card"><strong>400</strong><span>sequências organizadas</span></div>
         </div>
         <div className="hero-actions">
@@ -78,7 +81,7 @@ export default function Home() {
       <div className="container center"><span className="kicker inverse">AMOSTRA DO PRODUTO</span><h2>Veja como cada sequência aparece <em>dentro do seu guia</em></h2><p className="lead">Selecionamos cinco exemplos da tabela enviada e transformamos cada um em uma página completa, com intenção, leitura, reflexão prática e aviso de uso simbólico.</p></div>
         <div className="inside-carousel" aria-label="Carrossel automático com páginas do produto">
           <div className="inside-track">
-            {[...insidePages, ...insidePages].map(([src,alt,caption],i)=><figure className="inside-slide" key={`${src}-${i}`}><img src={src} alt={alt} width="1200" height="1500" loading="lazy" decoding="async" sizes="(max-width: 560px) 82vw, (max-width: 1200px) 36vw, 540px"/><figcaption>{caption}</figcaption></figure>)}
+            {[...insidePages, ...insidePages].map(([src,alt,caption],i)=><figure className="inside-slide" key={`${src}-${i}`}><Image src={src} alt={alt} width={1000} height={1250} loading="lazy" sizes="(max-width: 560px) 82vw, (max-width: 1200px) 36vw, 540px"/><figcaption>{caption}</figcaption></figure>)}
           </div>
         </div>
       <div className="container center">
@@ -91,9 +94,9 @@ export default function Home() {
 
     <section className="audience"><div className="container center"><span className="kicker inverse">PARA QUEM É?</span><h2>Para quem já tentou, ficou em dúvida ou tem medo de estar fazendo errado</h2><div className="three-grid"><article><span>☼</span><h3>Salvou vários códigos</h3><p>Tem prints e anotações, mas já não lembra qual sequência corresponde a cada intenção.</p></article><article><span>✦</span><h3>Tentou e não percebeu diferença</h3><p>Quer uma forma mais clara de escolher e praticar, sem novas promessas de resultado.</p></article><article><span>◇</span><h3>Tem receio de ser enganado</h3><p>Prefere ver exemplos reais do material e saber exatamente o que receberá antes de decidir.</p></article></div></div></section>
 
-    <section className="light bonus-section"><div className="container center"><span className="kicker">3 BÔNUS INCLUÍDOS</span><h2>Três apoios para transformar números salvos em uma prática organizada</h2><p className="lead dark-lead">O guia ajuda você a escolher a sequência. Os bônus ajudam a registrar a intenção, conduzir o momento e criar constância.</p><div className="bonus-grid">{bonuses.map(([num,title,text,img,alt])=><article key={num}><b>BÔNUS {num}</b><div className="bonus-art"><img src={img} alt={alt} width="1200" height="1200" loading="lazy" decoding="async" sizes="(max-width: 700px) 92vw, 33vw"/></div><h3>{title}</h3><p>{text}</p><span>INCLUÍDO</span></article>)}</div></div></section>
+    <section className="light bonus-section" id="bonus"><div className="container center"><span className="kicker">3 BÔNUS INCLUÍDOS</span><h2>Três apoios para transformar números salvos em uma prática organizada</h2><p className="lead dark-lead">O guia ajuda você a escolher a sequência. Os bônus ajudam a registrar a intenção, conduzir o momento e criar constância.</p><div className="bonus-grid">{bonuses.map(([num,title,text,img,alt])=><article key={num}><b>BÔNUS {num}</b><div className="bonus-art"><Image src={img} alt={alt} width={1100} height={825} loading="lazy" sizes="(max-width: 700px) 92vw, 33vw"/></div><h3>{title}</h3><p>{text}</p><span>INCLUÍDO</span></article>)}</div></div></section>
 
-    <section className="offer" id="oferta"><div className="container offer-wrap"><div className="offer-copy"><span className="kicker inverse">ACESSO COMPLETO</span><h2>Receba os 400 códigos organizados e saiba exatamente por onde começar</h2><p className="offer-note">Guia principal e três materiais de apoio reunidos em uma entrega 100% digital.</p></div><div className="offer-box"><div className="offer-badge">GUIA + 3 BÔNUS</div><img className="offer-mockup" src="/deliverable-mockup-v4.webp" alt="Pacote digital com guia, áudios, planner e ritual de 7 dias" width="1200" height="800" loading="lazy" decoding="async" sizes="(max-width: 560px) 92vw, 520px"/><h3>400 Códigos de Manifestação</h3><p className="offer-value">Uma biblioteca de consulta para escolher, entender e praticar cada sequência com mais clareza.</p><div className="offer-includes"><span>✓ 400 códigos separados por área da vida</span><span>✓ Intenção tradicionalmente atribuída a cada sequência</span><span>✓ Leitura dos números explicada dígito por dígito</span><span>✓ Orientação curta para aplicar sem misturar códigos</span><span>✓ Categorias para prosperidade, amor, proteção, foco e novos ciclos</span><span>✓ Planner para registrar intenção, código e percepções</span><span>✓ Áudios guiados para foco, presença e visualização</span><span>✓ Ritual organizado de 7 dias</span><span>✓ Consulta no celular, tablet ou computador</span><span>✓ Pagamento único e 7 dias de garantia</span></div><div className="offer-divider"/><small>ACESSO COMPLETO POR</small><strong>{OFFER_PRICE}</strong><p>Pagamento único • sem mensalidade</p><CTA label="QUERO RECEBER TODO O MATERIAL"/><div className="offer-reassurance"><span>⚡ Acesso após a confirmação</span><span>✓ 7 dias de garantia</span></div><div className="security">🔒 Compra processada em ambiente seguro</div></div></div></section>
+    <section className="offer" id="oferta"><div className="container offer-wrap"><div className="offer-copy"><span className="kicker inverse">ACESSO COMPLETO</span><h2>Receba os 400 códigos organizados e saiba exatamente por onde começar</h2><p className="offer-note">Guia principal e três materiais de apoio reunidos em uma entrega 100% digital.</p></div><div className="offer-box"><div className="offer-badge">GUIA + 3 BÔNUS</div><Image className="offer-mockup" src="/deliverable-mockup-v4.webp" alt="Pacote digital com guia, áudios, planner e ritual de 7 dias" width={1200} height={800} loading="lazy" sizes="(max-width: 560px) 92vw, 520px"/><h3>400 Códigos de Manifestação</h3><p className="offer-value">Uma biblioteca de consulta para escolher, entender e praticar cada sequência com mais clareza.</p><div className="offer-includes"><span>✓ 400 códigos separados por área da vida</span><span>✓ Intenção tradicionalmente atribuída a cada sequência</span><span>✓ Leitura dos números explicada dígito por dígito</span><span>✓ Orientação curta para aplicar sem misturar códigos</span><span>✓ Categorias para prosperidade, amor, proteção, foco e novos ciclos</span><span>✓ Planner para registrar intenção, código e percepções</span><span>✓ Áudios guiados para foco, presença e visualização</span><span>✓ Ritual organizado de 7 dias</span><span>✓ Consulta no celular, tablet ou computador</span><span>✓ Pagamento único e 7 dias de garantia</span></div><div className="offer-divider"/><small>ACESSO COMPLETO POR</small><strong>{OFFER_PRICE}</strong><p>Pagamento único • sem mensalidade</p><CTA label="QUERO RECEBER TODO O MATERIAL" href={CHECKOUT_URL}/><div className="offer-reassurance"><span>⚡ Acesso após a confirmação</span><span>✓ 7 dias de garantia</span></div><div className="security">🔒 Compra processada em ambiente seguro</div></div></div></section>
 
     <section className="guarantee light"><div className="container narrow center"><div className="seal">7<span>DIAS</span></div><span className="kicker">RISCO ZERO</span><h2>Você tem 7 dias para conhecer o material</h2><p>Se dentro desse prazo o produto não fizer sentido para você, basta solicitar o reembolso conforme as regras da plataforma de pagamento.</p></div></section>
 

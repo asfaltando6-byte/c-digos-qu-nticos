@@ -68,3 +68,9 @@
 .hero-visual img{width:min(720px,112%);border-radius:22px;filter:drop-shadow(0 30px 34px #0009)}
 .offer-mockup{width:100%;max-width:520px;margin:2px auto 18px;border-radius:16px;filter:drop-shadow(0 16px 22px #4b2d1340)}
 @media(max-width:560px){.hero-visual img{width:112%;border-radius:15px}.offer-mockup{width:100%;margin:0 auto 14px;border-radius:12px}}
+
+/* Stronger body copy and smooth bonus anchor without changing the layout */
+:root{--muted:#5f5144}
+html{scroll-padding-top:20px}
+p,.hero-points,.microcopy,.snapshot-grid>div>span,.offer-includes span,.offer-reassurance,.security,.inside-slide figcaption{font-weight:500}
+.dark .lead,.three-grid p,.offer-note,.faq details p{color:#dfd2c0}
